@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 #include "chassis.h"
- 
+
 static int32_t motor_pid_input_convert(struct controller *ctrl, void *input);
 
 int32_t chassis_pid_register(struct chassis *chassis, const char *name, enum device_can can)
@@ -96,10 +96,10 @@ int32_t chassis_execute(struct chassis *chassis)
 
   static uint8_t init_f = 0;
   static float last_time, period;
-  
+
   if (chassis == NULL)
     return -RM_INVAL;
-  
+
 	period  = get_time_ms_us() - last_time;
 
   if(!init_f)
@@ -116,7 +116,7 @@ int32_t chassis_execute(struct chassis *chassis)
     chassis->mecanum.speed.vy += chassis->acc.ay/1000.0f*period;
     chassis->mecanum.speed.vw += chassis->acc.wz/1000.0f*period;
   }
-  
+
   mecanum_calculate(&(chassis->mecanum));
 
   for (int i = 0; i < 4; i++)
@@ -231,7 +231,7 @@ int32_t chassis_enable(struct chassis *chassis)
 
   for (int i = 0; i < 4; i++)
   {
-    controller_enable(&(chassis->ctrl[i])); 
+    controller_enable(&(chassis->ctrl[i]));
   }
 
   return RM_OK;
@@ -244,7 +244,7 @@ int32_t chassis_disable(struct chassis *chassis)
 
   for (int i = 0; i < 4; i++)
   {
-    controller_disable(&(chassis->ctrl[i])); 
+    controller_disable(&(chassis->ctrl[i]));
   }
 
   return RM_OK;
