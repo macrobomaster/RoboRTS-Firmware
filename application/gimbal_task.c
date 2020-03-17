@@ -93,7 +93,7 @@ void gimbal_task(void const *argument)
   {
     if (rc_device_get_state(prc_dev, RC_S2_UP) == RM_OK)
     {
-      gimbal_set_yaw_mode(pgimbal, GYRO_MODE);
+      gimbal_set_yaw_mode(pgimbal, ENCODER_MODE);
       pit_delta = -(float)prc_info->ch4 * 0.0007f;
       yaw_delta = -(float)prc_info->ch3 * 0.0007f;
       gimbal_set_pitch_delta(pgimbal, pit_delta);
